@@ -4,13 +4,27 @@ import { Post } from "./models/post";
 
 export default async function Home() {
   const posts = await getPosts();
+  const getColor = (index: number) => {
+    switch (index) {
+      case 1:
+        return "text-primary-10";
+      case 2:
+        return "text-primary-20";
+      case 3:
+        return "text-primary-30";
+      case 4:
+        return "text-primary-40";
 
+      default:
+        return "text-primary-70";
+    }
+  };
   return (
     <>
-      <div className="mx-auto max-w-2xl bg-[--bg] px-5 py-12 text-[--text]">
+      <div className="mx-auto max-w-2xl px-5 py-12">
         <header className="mb-14 flex flex-row place-content-between">
           <Link
-            className="inline-block text-2xl font-black  scale-100 active:scale-100"
+            className="inline-block text-2xl font-black scale-100 active:scale-100"
             href={"/"}
           >
             overreacted
@@ -27,12 +41,13 @@ export default async function Home() {
                 <Link
                   className="block py-4 hover:scale-[1.005] scale-100 active:scale-100 ease-in-out transition-all duration-150"
                   href={`/post/${post.id}`}
+                  key={index}
                 >
                   <article>
                     <h2
-                      className={`text-[28px] font-black dark:text-gray-300 ${
-                        index === 0 ? "text-primary-70" : "text-primary-100"
-                      } `}
+                      className={`text-[28px] font-black dark:text-gray-300 ${getColor(
+                        index + 1
+                      )} `}
                     >
                       {post.title}
                     </h2>

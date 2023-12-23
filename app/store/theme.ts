@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export interface RootState {
-  theme: string;
+  theme: { theme: string };
 }
 const themeSlice = createSlice({
   name: "theme",

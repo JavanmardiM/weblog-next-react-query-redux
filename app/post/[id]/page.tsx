@@ -9,13 +9,13 @@ export default async function Post({ params }: PostProps) {
 
   return (
     <>
-      <div className="mx-auto max-w-2xl bg-[--bg] px-5 py-12 text-[--text]">
+      <div className="mx-auto max-w-2xl px-5 py-12">
         <header className="mb-14 flex flex-row place-content-between">
           <Link
-            className="inline-block text-2xl font-black  scale-100 active:scale-100"
+            className="inline-block text-2xl font-black scale-100 active:scale-100"
             href={"/"}
           >
-            <h1 className="text-2xl bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500  inline-block text-transparent bg-clip-text">
+            <h1 className="text-2xl bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 inline-block text-transparent bg-clip-text">
               overreacted
             </h1>
           </Link>
@@ -26,7 +26,7 @@ export default async function Post({ params }: PostProps) {
         </header>
         <main>
           <article>
-            <h1 className="__className_b47211 text-[40px] font-black leading-[44px] text-[--title]">
+            <h1 className="text-[40px] font-black leading-[44px]">
               {post.title}
             </h1>
             <p className="mt-2 text-[13px] text-gray-700 dark:text-gray-300">

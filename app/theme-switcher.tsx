@@ -8,7 +8,7 @@ import { RootState, themeAction } from "./store/theme";
 const ThemeSwitcher = () => {
   const [mounted, setMounted] = useState(false);
   const [isDark, setIsDark] = useState(false);
-  const storedTheme = useSelector((state: any) => state.theme.theme);
+  const storedTheme = useSelector((state: RootState) => state.theme.theme);
   const { theme, setTheme } = useTheme();
   const dispatch = useDispatch();
 
