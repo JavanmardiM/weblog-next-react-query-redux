@@ -1,9 +1,19 @@
 import Link from "next/link";
 import getPosts from "./libs/getPosts";
 import { Post } from "./models/post";
+import moment from "moment";
 
 export default async function Home() {
   const posts = await getPosts();
+  const postsWithDate = posts.map((item: Post) => {
+    return {
+      ...item,
+      date: moment().subtract(item.id, "days"),
+    };
+  });
+  var sortedPosts = postsWithDate.sort(function (date1: string, date2: string) {
+    return moment(date1).valueOf() - moment(date2).valueOf();
+  });
   const getColor = (index: number) => {
     switch (index) {
       case 1:
@@ -36,7 +46,7 @@ export default async function Home() {
         </header>
         <main>
           <div className="relative -top-[10px] flex flex-col gap-8">
-            {posts.map((post: Post, index: number) => {
+            {sortedPosts.map((post: Post, index: number) => {
               return (
                 <Link
                   className="block py-4 hover:scale-[1.005] scale-100 active:scale-100 ease-in-out transition-all duration-150"
@@ -52,7 +62,7 @@ export default async function Home() {
                       {post.title}
                     </h2>
                     <p className="text-[13px] text-gray-700 dark:text-gray-300">
-                      December {post.id.toString().padStart(2, "0")}, 2023
+                      {moment(post.date)?.format("MMMM DD dddd, YYYY")}
                     </p>
                     <p className="mt-1 dark:text-blue-300">{post.body}</p>
                   </article>
